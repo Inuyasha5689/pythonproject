@@ -134,7 +134,9 @@
                 console.log(this.inputUser);
                 this.$http.post('http://vuejs.magicalexwuff.com:5000/api/v1/users.json', this.inputUser)
                     .then(response => {
-                        console.log(response.data.id);
+                        this.inputUser = this.emptyUser;
+                        this.success = "You have successfully added your user info to the database! If you would like to change or delete it later please use the id number: "+ response.attributes.id;
+                        this.showSuccess = true;
                     }, error => {
                         console.log(error);
                     });
