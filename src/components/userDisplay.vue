@@ -125,14 +125,14 @@
         },
         methods: {
             fetchData() {
-                this.$http.get('http://localhost:5000/api/v1/users{/id}.json', {params: {id: this.id}})
+                this.$http.get('http://vuejs.magicalexwuff.com:5000/api/v1/users{/id}.json', {params: {id: this.id}})
                     .then(response => {
                         this.displayUser = response.body.data.attributes;
                     })
             },
             submit() {
                 console.log(this.inputUser);
-                this.$http.post('http://localhost:5000/api/v1/users.json', this.inputUser)
+                this.$http.post('http://vuejs.magicalexwuff.com:5000/api/v1/users.json', this.inputUser)
                     .then(response => {
                         console.log(response.data.id);
                     }, error => {
@@ -142,7 +142,7 @@
                 usersLengthFunc();
             },
             updateUser() {
-                this.$http.patch('http://localhost:5000/api/v1/users{/id}.json', this.inputUser, {params: {id: this.id}})
+                this.$http.patch('http://vuejs.magicalexwuff.com:5000/api/v1/users{/id}.json', this.inputUser, {params: {id: this.id}})
                     .then(response => {
                         this.inputUser = this.emptyUser;
                         this.success = "";
@@ -156,7 +156,7 @@
                     });
             },
             deleteUser() {
-                this.$http.delete('http://localhost:5000/api/v1/users{/id}.json', {params: {id: this.id}})
+                this.$http.delete('http://vuejs.magicalexwuff.com:5000/v1/users{/id}.json', {params: {id: this.id}})
                     .then(response => {
                         console.log(response);
                         this.displayUser = this.emptyUser;
@@ -173,7 +173,7 @@
         },
 
         mounted() {
-            this.$http.get('http://localhost:5000/api/v1/users.json')
+            this.$http.get('http://vuejs.magicalexwuff.com:5000/api/v1/users.json')
                 .then(response => {
                     return response.body.data
                 })
