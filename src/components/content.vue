@@ -1,7 +1,7 @@
 <template>
     <div>
         <app-user-display @listofusers="users = $event"></app-user-display>
-        <app-user-input :users="users"></app-user-input>
+
     </div>
 </template>
 

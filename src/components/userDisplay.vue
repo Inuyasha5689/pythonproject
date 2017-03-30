@@ -1,5 +1,5 @@
 <template>
-    <div style="display: block; margin: auto; position: relative">
+    <div style="display: block;">
         <div class="row col-md-6">
             <div class="form-group">
                 <label>First Name</label>
@@ -15,7 +15,7 @@
             </div>
             <div class="form-group">
                 <label>Age</label>
-                <input class="form-control" type="number" v-model="inputUser.data.attributes.age"/>
+                <input class="form-control" type="number" v-model="inputUser.data.attributes.age" min="1" max="99"/>
             </div>
             <div class="form-group">
                 <label>Birth Date</label>
@@ -30,7 +30,10 @@
                 <button @click="updateUser" class="btn btn-warning">Update User</button>
             </div>
         </div>
-        <div class="row col-md-5 pull-right" style="padding-top: 5px; display: inline-block">
+        <transition name="bounce" mode="out-in" @afterEnter="afterEnter" class="row">
+            <app-panel :success="success" :successClass="successClass" :danger="danger" v-if="showSuccess" key="component" style="position: relative"></app-panel>
+        </transition>
+        <div class="row col-md-5 pull-right" style="padding-top: 5px; display: inline-block; position: relative;">
             <ul class="list-group">
                 <li class="list-group-item" style="padding-top: 5px">
                     <h3>This is the user you pulled from the database</h3>
@@ -71,11 +74,8 @@
                     <button @click="deleteUser" class="btn btn-danger">Delete Currently Displayed User</button>
                 </div>
             </ul>
-
         </div>
-        <transition name="bounce">
-            <app-panel :success="success" v-show="showSuccess"></app-panel>
-        </transition>
+
     </div>
 </template>
 
@@ -118,7 +118,9 @@
                 id: 0,
                 usersLength: 1,
                 showSuccess: false,
-                success: ''
+                success: '',
+                danger: [],
+                successClass: true
             }
         },
         methods: {
@@ -143,12 +145,15 @@
                 this.$http.patch('http://localhost:5000/api/v1/users{/id}.json', this.inputUser, {params: {id: this.id}})
                     .then(response => {
                         this.inputUser = this.emptyUser;
-                        this.success = "Your user info has successfully been updated!";
+                        this.success = "";
                         this.showSuccess = true;
                     }, error => {
-                        console.log(this.id);
-                        console.log(error);
-                    })
+                        for (let i = 0; i < error.body.error.errors.length; i++){
+                            this.danger.push(error.body.error.errors[i].detail);
+                        }
+                        this.successClass = false;
+                        this.showSuccess = true;
+                    });
             },
             deleteUser() {
                 this.$http.delete('http://localhost:5000/api/v1/users{/id}.json', {params: {id: this.id}})
@@ -159,6 +164,12 @@
                         console.log(error);
                     });
             },
+            afterEnter(el) {
+                let vm = this;
+                setTimeout(function () {
+                    vm.showSuccess = false;
+                }, 3000)
+            }
         },
 
         mounted() {
@@ -177,7 +188,7 @@
                         this.usersLength = this.users.length;
                         console.log(this.usersLength);
                     };
-                    usersLengthFunc();
+                    this.usersLengthFunc();
                 })
         },
         components: {
@@ -187,12 +198,14 @@
 
 </script>
 
-<style>
+<style scoped="true">
 
     .bounce-enter-active {
         animation: bounce-in 1s;
     }
+
     .bounce-leave-active {
+        animation-delay: 3s;
         animation: bounce-out 1s;
     }
     @keyframes bounce-in {
@@ -209,12 +222,15 @@
     @keyframes bounce-out {
         0% {
             transform: scale(1);
+            opacity: 1;
         }
         50% {
             transform: scale(1.5);
+            opacity: .5;
         }
         100% {
             transform: scale(0);
+            opacity: 0;
         }
     }
 
