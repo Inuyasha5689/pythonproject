@@ -1,29 +1,41 @@
 <template>
     <div style="display: block;">
         <div class="row col-md-6">
-            <div class="form-group">
+            <div class="form-group has-icon has-icon-right">
                 <label>First Name</label>
-                <input class="form-control" v-model="inputUser.data.attributes.firstName"/>
+                <input class="form-control" v-validate:firstName="'required|alpha|min:3|max:20'" name="firstName" type="text" v-model="inputUser.data.attributes.firstName"/>
+                <i v-show="errors.has('firstName')" class="fa fa-warning"></i>
+                <span v-show="errors.has('firstName')" class="help is-danger">{{ errors.first('firstName') }}</span>
             </div>
-            <div class="form-group">
+            <div class="form-group has-icon has-icon-right">
                 <label>Last Name</label>
-                <input class="form-control" v-model="inputUser.data.attributes.lastName">
+                <input class="form-control" v-validate:lastName="'required|alpha|min:3|max:20'" name="lastName" type="text" v-model="inputUser.data.attributes.lastName">
+                <i v-show="errors.has('lastName')" class="fa fa-warning"></i>
+                <span v-show="errors.has('lastName')" class="help is-danger">{{ errors.first('lastName') }}</span>
             </div>
-            <div class="form-group">
+            <div class="form-group has-icon has-icon-right">
                 <label>Email</label>
-                <input class="form-control" type="email" v-model="inputUser.data.attributes.email"/>
+                <input class="form-control" v-validate:email="'required|email|max:50'" name="email" type="email" v-model="inputUser.data.attributes.email"/>
+                <i v-show="errors.has('email')" class="fa fa-warning"></i>
+                <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
             </div>
-            <div class="form-group">
+            <div class="form-group has-icon has-icon-right">
                 <label>Age</label>
-                <input class="form-control" type="number" v-model="inputUser.data.attributes.age" min="1" max="99"/>
+                <input class="form-control" v-validate:age="'required|max_value:99'" name="age" type="number" v-model="inputUser.data.attributes.age" min="1" max="99"/>
+                <i v-show="errors.has('age')" class="fa fa-warning"></i>
+                <span v-show="errors.has('age')" class="help is-danger">{{ errors.first('age') }}</span>
             </div>
-            <div class="form-group">
+            <div class="form-group has-icon has-icon-right">
                 <label>Birth Date</label>
-                <input class="form-control" type="date" v-model="inputUser.data.attributes.birthDate"/>
+                <input class="form-control" v-validate:birthDate="'required|date_format:YYYY-MM-DD'" name="birthDate" type="date" v-model="inputUser.data.attributes.birthDate"/>
+                <i v-show="errors.has('birthDate')" class="fa fa-warning"></i>
+                <span v-show="errors.has('birthDate')" class="help is-danger">{{ errors.first('birthDate') }}</span>
             </div>
-            <div class="form-group">
+            <div class="form-group has-icon has-icon-right">
                 <label>Zip Code</label>
-                <input class="form-control" type="number" v-model="inputUser.data.attributes.zipcode"/>
+                <input class="form-control" v-validate:zipcode="'required|numeric|min:4'" name="zipcode" type="number" v-model.lazy="inputUser.data.attributes.zipcode"/>
+                <i v-show="errors.has('zipcode')" class="fa fa-warning"></i>
+                <span v-show="errors.has('zipcode')" class="help is-danger">{{ errors.first('zipcode') }}</span>
             </div>
             <div class="btn btn-group">
                 <button @click="submit" class="btn btn-primary">Submit User</button>
@@ -172,6 +184,15 @@
                     vm.showSuccess = false;
                 }, 3000)
             }
+        },
+        computed: {
+            firstName() {return this.inputUser.data.attributes.firstName;},
+            lastName() {return this.inputUser.data.attributes.lastName;},
+            email() {return this.inputUser.data.attributes.email;},
+            age() {return this.inputUser.data.attributes.age;},
+            birthDate() {console.log(this.inputUser.data.attributes.birthDate); return this.inputUser.data.attributes.birthDate;},
+            zipcode() {return this.inputUser.data.attributes.zipcode}
+
         },
 
         mounted() {
