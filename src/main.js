@@ -35,33 +35,7 @@ const router = new VueRouter({
 });
 
 export const eventBus = new Vue({
-    methods: {
-        UserClass() {
-            class User {
-                constructor(data = {
-                    attributes: {
-                        firstName: '',
-                        lastName: '',
-                        email: '',
-                        age: null,
-                        birthDate: '',
-                        zipcode: null
-                    },
-                    id: null,
-                    type: "users"
-                }) {
-                    this.data.attributes.firstName = data.attributes.firstName;
-                    this.data.attributes.lastName = data.attributes.lastName;
-                    this.data.attributes.email = data.attributes.email;
-                    this.data.attributes.age = data.attributes.age;
-                    this.data.attributes.birthDate = data.attributes.birthDate;
-                    this.data.attributes.zipcode = data.attributes.zipcode;
-                    this.id = data.id;
-                    this.type = data.type;
-                }
-            }
-        }
-    },
+
 });
 
 new Vue({

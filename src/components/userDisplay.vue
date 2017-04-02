@@ -140,7 +140,6 @@
                 success: '',
                 danger: [],
                 successClass: true,
-                User: new eventBus.methods.UserClass().User.constructor
             }
         },
         methods: {
