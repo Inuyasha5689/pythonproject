@@ -3,37 +3,43 @@
         <div class="row col-md-6">
             <div class="form-group has-icon has-icon-right">
                 <label>First Name</label>
-                <input class="form-control" v-validate:firstName="'required|alpha|min:3|max:20'" name="firstName" type="text" v-model="inputUser.data.attributes.firstName"/>
+                <input class="form-control" v-validate:firstName="'required|alpha|min:3|max:20'" name="firstName" type="text"
+                       v-model="inputUser.data.attributes.firstName" :class="{'input': true, 'is-danger': errors.has('firstName') }"/>
                 <i v-show="errors.has('firstName')" class="fa fa-warning"></i>
                 <span v-show="errors.has('firstName')" class="help is-danger">{{ errors.first('firstName') }}</span>
             </div>
             <div class="form-group has-icon has-icon-right">
                 <label>Last Name</label>
-                <input class="form-control" v-validate:lastName="'required|alpha|min:3|max:20'" name="lastName" type="text" v-model="inputUser.data.attributes.lastName">
+                <input class="form-control" v-validate:lastName="'required|alpha|min:3|max:20'" name="lastName" type="text"
+                       v-model="inputUser.data.attributes.lastName" :class="{'input': true, 'is-danger': errors.has('lastName') }">
                 <i v-show="errors.has('lastName')" class="fa fa-warning"></i>
                 <span v-show="errors.has('lastName')" class="help is-danger">{{ errors.first('lastName') }}</span>
             </div>
             <div class="form-group has-icon has-icon-right">
                 <label>Email</label>
-                <input class="form-control" v-validate:email="'required|email|max:50'" name="email" type="email" v-model="inputUser.data.attributes.email"/>
+                <input class="form-control" v-validate:email="'required|email|max:50'" name="email" type="email"
+                       v-model="inputUser.data.attributes.email" :class="{'input': true, 'is-danger': errors.has('email') }"/>
                 <i v-show="errors.has('email')" class="fa fa-warning"></i>
                 <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
             </div>
             <div class="form-group has-icon has-icon-right">
                 <label>Age</label>
-                <input class="form-control" v-validate:age="'required|max_value:99'" name="age" type="number" v-model="inputUser.data.attributes.age" min="1" max="99"/>
+                <input class="form-control" v-validate:age="'required|max_value:99'" name="age" type="number"
+                       v-model="inputUser.data.attributes.age" min="1" max="99" :class="{'input': true, 'is-danger': errors.has('age') }"/>
                 <i v-show="errors.has('age')" class="fa fa-warning"></i>
                 <span v-show="errors.has('age')" class="help is-danger">{{ errors.first('age') }}</span>
             </div>
             <div class="form-group has-icon has-icon-right">
                 <label>Birth Date</label>
-                <input class="form-control" v-validate:birthDate="'required|date_format:YYYY-MM-DD'" name="birthDate" type="date" v-model="inputUser.data.attributes.birthDate"/>
+                <input class="form-control" v-validate:birthDate="'required|date_format:YYYY-MM-DD'" name="birthDate"
+                       type="date" v-model="inputUser.data.attributes.birthDate" :class="{'input': true, 'is-danger': errors.has('birthDate') }"/>
                 <i v-show="errors.has('birthDate')" class="fa fa-warning"></i>
                 <span v-show="errors.has('birthDate')" class="help is-danger">{{ errors.first('birthDate') }}</span>
             </div>
             <div class="form-group has-icon has-icon-right">
                 <label>Zip Code</label>
-                <input class="form-control" v-validate:zipcode="'required|numeric|min:4'" name="zipcode" type="number" v-model.lazy="inputUser.data.attributes.zipcode"/>
+                <input class="form-control" v-validate:zipcode="'required|numeric|min:4'" name="zipcode" type="number"
+                       v-model="inputUser.data.attributes.zipcode" :class="{'input': true, 'is-danger': errors.has('zipcode') }"/>
                 <i v-show="errors.has('zipcode')" class="fa fa-warning"></i>
                 <span v-show="errors.has('zipcode')" class="help is-danger">{{ errors.first('zipcode') }}</span>
             </div>
@@ -93,6 +99,7 @@
 
 <script>
     import Panel from './panel.vue';
+    import {eventBus} from  '../main';
     export default {
         data() {
             return {
@@ -132,7 +139,8 @@
                 showSuccess: false,
                 success: '',
                 danger: [],
-                successClass: true
+                successClass: true,
+                User: new eventBus.methods.UserClass().User.constructor
             }
         },
         methods: {
@@ -214,6 +222,9 @@
                     this.usersLengthFunc();
                 })
         },
+        created() {
+          console.log(this.User);
+        },
         components: {
             appPanel: Panel
         }
@@ -222,6 +233,10 @@
 </script>
 
 <style scoped="true">
+
+    .is-danger {
+        border-color: red;
+    }
 
     .bounce-enter-active {
         animation: bounce-in 1s;
