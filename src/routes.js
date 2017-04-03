@@ -10,9 +10,7 @@ import List from './components/list.vue';
 
 export const routes = [
     { path: '/', component: Home},
-    { path: '/content', component: Content, children: [
-        { path: 'userDisplay', component: UserDisplay},
-        { path: 'list', component: List}
-    ]}
+    { path: '/userDisplay', component: UserDisplay},
+    { path: '/list', component: List}
 
 ];

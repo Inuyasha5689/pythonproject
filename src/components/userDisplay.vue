@@ -227,9 +227,11 @@
                         console.log(this.users);
                         this.usersLength = this.users.length;
                         console.log(this.usersLength);
-                        eventBus.$emit('usersArray', this.users);
+
                     };
                     this.usersLengthFunc();
+                    eventBus.$emit('usersArray', this.users);
+
 
                 })
 

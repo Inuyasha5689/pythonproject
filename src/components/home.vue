@@ -1,7 +1,5 @@
 <template>
-    <div>
-        Hello!
-    </div>
+    <app-content></app-content>
 </template>
 
 <script>
