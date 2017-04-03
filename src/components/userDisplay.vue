@@ -138,9 +138,10 @@
                 usersLength: 1,
                 showSuccess: false,
                 success: '',
-                danger: [],
+                dangerArray: [],
                 successClass: true,
                 nextPostId: [],
+                danger: ''
             }
         },
         methods: {
@@ -148,19 +149,28 @@
                 this.$http.get('http://vuejs.magicalexwuff.com:5000/api/v1/users{/id}.json', {params: {id: this.id}})
                     .then(response => {
                         this.displayUser = response.body.data.attributes;
-                    })
+                    }, error => {
+                        console.log(error);
+                        this.danger = "User id not found!";
+                        this.successClass = false;
+                        this.showSuccess = true;
+                    });
+                this.successClass = true;
             },
             submit() {
                 console.log(this.inputUser);
                 this.$http.post('http://vuejs.magicalexwuff.com:5000/api/v1/users.json', this.inputUser)
                     .then(response => {
+                        console.log(response);
                         this.inputUser = this.emptyUser;
-                        this.success = "You have successfully added your user info to the database! If you would like to change or delete it later please use the id number: "+ response.data.attributes.id;
+                        this.success = "You have successfully added your user info to the database! If you would like to change or delete it later please use the id number: "+ response.data.data.id;
                         this.showSuccess = true;
                     }, error => {
                         this.displayError(error);
+
                     });
                 this.user = this.emptyUser;
+                this.successClass = true;
                 this.usersLengthFunc();
             },
             updateUser() {
@@ -170,22 +180,22 @@
                         this.success = "You have successfully updated the selected user!";
                         this.showSuccess = true;
                     }, error => {
-                        for (let i = 0; i < error.body.error.errors.length; i++){
-                            this.danger.push(error.body.error.errors[i].detail);
-                        }
+                        this.danger = "1 or more fields have not been entered. Please make sure all fields are filled.";
                         this.successClass = false;
                         this.showSuccess = true;
                     });
+                this.successClass = true;
             },
             deleteUser() {
                 this.$http.delete('http://vuejs.magicalexwuff.com:5000/api/v1/users{/id}.json', {params: {id: this.id}})
                     .then(response => {
-                        this.success = "You have successfully deleted the suer from the database!";
+                        this.success = "You have successfully deleted the user from the database!";
                         this.showSuccess = true;
                         this.displayUser = this.emptyUser;
                     }, error => {
                         this.displayError(error);
                     });
+                this.successClass = true;
             },
             afterEnter(el) {
                 let vm = this;
@@ -195,7 +205,7 @@
             },
             displayError(error) {
                 let vm = this;
-                vm.danger.push(error.body.errors[0].detail);
+                vm.danger = error.data.message;
                 vm.successClass = false;
                 vm.showSuccess = true;
             }
