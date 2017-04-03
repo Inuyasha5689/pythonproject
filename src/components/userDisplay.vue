@@ -53,10 +53,18 @@
                 danger: '',
                 successClass: true,
                 showSuccess: false,
-                displayUser: {}
+                displayUser: {},
+                id: 1
             }
         },
         methods: {
+            emitData(danger, successClass, showSuccess) {
+                eventBus.$emit('danger', this.danger);
+                this.successClass = successClass;
+                eventBus.$emit('successClass', this.successClass);
+                this.showSuccess = showSuccess;
+                eventBus.$emit('showSuccess', this.showSuccess);
+            },
             fetchData() {
                 this.$http.get('http://vuejs.magicalexwuff.com:5000/api/v1/users{/id}.json', {params: {id: this.id}})
                     .then(response => {
@@ -65,11 +73,20 @@
                     }, error => {
                         console.log(error);
                         this.danger = "User id not found!";
-                        eventBus.$emit('danger', this.danger);
-                        this.successClass = false;
-                        eventBus.$emit('successClass', this.successClass);
+                        this.emitData(this.danger, false, true);
+                    });
+                this.successClass = true;
+            },
+            deleteUser() {
+                this.$http.delete('http://vuejs.magicalexwuff.com:5000/api/v1/users{/id}.json', {params: {id: this.id}})
+                    .then(response => {
+                        this.success = "You have successfully deleted the user from the database!";
                         this.showSuccess = true;
-                        eventBus.$emit('showSuccess', this.showSuccess);
+                        this.displayUser = this.emptyUser;
+                    }, error => {
+                        this.danger = "unable to delete the user";
+                        this.emitData(this.danger, false, true);
+
                     });
                 this.successClass = true;
             }

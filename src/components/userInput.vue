@@ -110,10 +110,13 @@
                         this.inputUser = this.emptyUser;
                         this.success = "You have successfully added your user info to the database! If you would like to change or delete it later please use the id number: "+ response.data.data.id;
                         this.showSuccess = true;
+                        this.fields.reset();
                     }, error => {
-                        this.displayError(error);
-
+                        this.success="Make sure all the fields are filled before you submit!";
+                        this.showSuccess = true;
+                        this.successClass = false;
                     });
+                this.success = '';
                 this.user = this.emptyUser;
                 this.successClass = true;
                 this.usersLengthFunc();
@@ -128,17 +131,6 @@
                         this.danger = "1 or more fields have not been entered. Please make sure all fields are filled.";
                         this.successClass = false;
                         this.showSuccess = true;
-                    });
-                this.successClass = true;
-            },
-            deleteUser() {
-                this.$http.delete('http://vuejs.magicalexwuff.com:5000/api/v1/users{/id}.json', {params: {id: this.id}})
-                    .then(response => {
-                        this.success = "You have successfully deleted the user from the database!";
-                        this.showSuccess = true;
-                        this.displayUser = this.emptyUser;
-                    }, error => {
-                        this.displayError(error);
                     });
                 this.successClass = true;
             },

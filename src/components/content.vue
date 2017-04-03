@@ -1,5 +1,5 @@
 <template>
-    <app-user></app-user>
+    <app-user class=""></app-user>
 </template>
 
 <script>
