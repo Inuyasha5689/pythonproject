@@ -178,7 +178,7 @@
                     });
             },
             deleteUser() {
-                this.$http.delete('http://vuejs.magicalexwuff.com:5000/v1/users{/id}.json', {params: {id: this.id}})
+                this.$http.delete('http://vuejs.magicalexwuff.com:5000/api/v1/users{/id}.json', {params: {id: this.id}})
                     .then(response => {
                         this.success = "You have successfully deleted the suer from the database!";
                         this.showSuccess = true;
