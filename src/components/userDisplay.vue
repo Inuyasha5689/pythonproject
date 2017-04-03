@@ -1,6 +1,7 @@
 <template>
-    <div style="display: block;">
-        <div class="row col-md-6">
+    <div style="">
+        <div class="row col-xs-12 col-md-6" style="padding-top: 5px; display: inline-block; position: relative;">
+            <br>
             <div class="form-group has-icon has-icon-right">
                 <label>First Name</label>
                 <input class="form-control" v-validate:firstName="'required|alpha|min:3|max:20'" name="firstName" type="text"
@@ -48,10 +49,10 @@
                 <button @click="updateUser" class="btn btn-warning">Update User</button>
             </div>
         </div>
-        <transition name="bounce" mode="out-in" @afterEnter="afterEnter" class="row">
-            <app-panel :success="success" :successClass="successClass" :danger="danger" v-if="showSuccess" key="component" style="position: relative"></app-panel>
+        <transition name="bounce" mode="out-in" @afterEnter="afterEnter">
+            <app-panel :success="success" :successClass="successClass" :danger="danger" v-if="showSuccess" class="row col-xs-12" key="component" style="position: relative"></app-panel>
         </transition>
-        <div class="row col-md-5 pull-right" style="padding-top: 5px; display: inline-block; position: relative;">
+        <div class="row col-xs-12 col-md-6" style="padding-top: 5px; display: inline-block; position: relative;">
             <ul class="list-group">
                 <li class="list-group-item" style="padding-top: 5px">
                     <h3>This is the user you pulled from the database</h3>

@@ -16,8 +16,6 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><router-link to="/">Home</router-link></li>
-                    <li><router-link to="/userDisplay">Users</router-link></li>
-                    <li><router-link to="/list">List</router-link></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

@@ -22,12 +22,10 @@ Vue.use(VueRx, {
 Vue.use(VeeValidate);
 
 import Home from './components/home.vue';
-import List from './components/list.vue';
 
 
 const routes = [
     { path: '/', component: Home },
-    { path: '/list', component: List }
 ];
 
 const router = new VueRouter({

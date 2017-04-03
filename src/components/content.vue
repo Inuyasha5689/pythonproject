@@ -4,7 +4,6 @@
 
 <script>
     import UserDisplay from './userDisplay.vue';
-    import List from './list.vue';
 
     export default {
         data() {
@@ -18,7 +17,6 @@
 
         components: {
             appUserDisplay: UserDisplay,
-            appList: List
         }
     }
 </script>
