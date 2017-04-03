@@ -1,12 +1,10 @@
 <template>
-    <div>
-        <app-user-display @listofusers="users = $event"></app-user-display>
-
-    </div>
+    <router-view></router-view>
 </template>
 
 <script>
     import UserDisplay from './userDisplay.vue';
+    import List from './list.vue';
 
     export default {
         data() {
@@ -20,6 +18,7 @@
 
         components: {
             appUserDisplay: UserDisplay,
+            appList: List
         }
     }
 </script>

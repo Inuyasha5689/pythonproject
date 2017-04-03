@@ -1,16 +1,21 @@
 <template>
     <ul>
-        <li v-for=""></li>
+        <li v-for="user in users"></li>
     </ul>
 </template>
 
 <script>
+    import { eventBus } from '../main';
 export default {
-    props: ['users'],
     data() {
         return {
-
+            users: []
         }
+    },
+    created() {
+        eventBus.$on('usersArray', (users) => {
+            this.users = users;
+        })
     }
 }
 </script>

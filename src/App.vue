@@ -1,16 +1,25 @@
 <template>
-  <router-view></router-view>
+  <div>
+    <app-header></app-header>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
+    import Header from './components/header.vue';
 
 export default {
+
+
   name: 'app',
   data () {
     return {
 
     }
-  }
+  },
+    components: {
+      appHeader: Header
+    }
 }
 </script>
 

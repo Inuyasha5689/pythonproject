@@ -84,7 +84,7 @@
                 <li>
                     <div class="form-group">
                         <label>Please enter the id number of the person's data that you wanna pull from the database</label>
-                        <input class="form-control" type="number" v-model="id" min="1" :max="usersLength"/>
+                        <input class="form-control" type="number" v-model="id" min="1"/>
                     </div>
                 </li>
                 <div class="btn btn-group">
@@ -140,6 +140,7 @@
                 success: '',
                 danger: [],
                 successClass: true,
+                nextPostId: [],
             }
         },
         methods: {
@@ -154,19 +155,19 @@
                 this.$http.post('http://vuejs.magicalexwuff.com:5000/api/v1/users.json', this.inputUser)
                     .then(response => {
                         this.inputUser = this.emptyUser;
-                        this.success = "You have successfully added your user info to the database! If you would like to change or delete it later please use the id number: "+ response.attributes.id;
+                        this.success = "You have successfully added your user info to the database! If you would like to change or delete it later please use the id number: "+ response.data.attributes.id;
                         this.showSuccess = true;
                     }, error => {
-                        console.log(error);
+                        this.displayError(error);
                     });
                 this.user = this.emptyUser;
-                usersLengthFunc();
+                this.usersLengthFunc();
             },
             updateUser() {
                 this.$http.patch('http://vuejs.magicalexwuff.com:5000/api/v1/users{/id}.json', this.inputUser, {params: {id: this.id}})
                     .then(response => {
                         this.inputUser = this.emptyUser;
-                        this.success = "";
+                        this.success = "You have successfully updated the selected user!";
                         this.showSuccess = true;
                     }, error => {
                         for (let i = 0; i < error.body.error.errors.length; i++){
@@ -179,10 +180,11 @@
             deleteUser() {
                 this.$http.delete('http://vuejs.magicalexwuff.com:5000/v1/users{/id}.json', {params: {id: this.id}})
                     .then(response => {
-                        console.log(response);
+                        this.success = "You have successfully deleted the suer from the database!";
+                        this.showSuccess = true;
                         this.displayUser = this.emptyUser;
                     }, error => {
-                        console.log(error);
+                        this.displayError(error);
                     });
             },
             afterEnter(el) {
@@ -190,6 +192,12 @@
                 setTimeout(function () {
                     vm.showSuccess = false;
                 }, 3000)
+            },
+            displayError(error) {
+                let vm = this;
+                vm.danger.push(error.body.errors[0].detail);
+                vm.successClass = false;
+                vm.showSuccess = true;
             }
         },
         computed: {
@@ -197,7 +205,7 @@
             lastName() {return this.inputUser.data.attributes.lastName;},
             email() {return this.inputUser.data.attributes.email;},
             age() {return this.inputUser.data.attributes.age;},
-            birthDate() {console.log(this.inputUser.data.attributes.birthDate); return this.inputUser.data.attributes.birthDate;},
+            birthDate() {return this.inputUser.data.attributes.birthDate;},
             zipcode() {return this.inputUser.data.attributes.zipcode}
 
         },
@@ -206,6 +214,8 @@
             this.$http.get('http://vuejs.magicalexwuff.com:5000/api/v1/users.json')
                 .then(response => {
                     return response.body.data
+                }, error =>{
+                    this.displayError(error);
                 })
                 .then(function (data) {
                     const resultArray = [];
@@ -217,9 +227,13 @@
                         console.log(this.users);
                         this.usersLength = this.users.length;
                         console.log(this.usersLength);
+                        eventBus.$emit('usersArray', this.users);
                     };
                     this.usersLengthFunc();
+
                 })
+
+
         },
         created() {
           console.log(this.User);
