@@ -1,7 +1,7 @@
 <template>
-    <div class="panel" :class="panelClasses" key="panel" style="position: absolute;">
-        <div class="panel-heading" key="heading">Status:
-            <h3 class="panel-title">{{ heading }}</h3>
+    <div class="panel panel-default"  :class="panelClasses" key="panel" style="">
+        <div class="panel-heading" :class="panelClasses">Status:
+            <h3 class="panel-title" :class="panelClasses">{{ heading }}</h3>
         </div>
 
         <div class="panel-body" key="body">{{ message }}</div>
@@ -47,6 +47,10 @@
     }
 </script>
 
-<style>
+<style scoped="true">
+    .panel {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 
 </style>

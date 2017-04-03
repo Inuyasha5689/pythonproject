@@ -1,9 +1,9 @@
 <template>
-    <app-user-display></app-user-display>
+    <app-user></app-user>
 </template>
 
 <script>
-    import UserDisplay from './userDisplay.vue';
+    import User from './User.vue';
 
     export default {
         data() {
@@ -16,7 +16,7 @@
         },
 
         components: {
-            appUserDisplay: UserDisplay,
+            appUser: User
         }
     }
 </script>
