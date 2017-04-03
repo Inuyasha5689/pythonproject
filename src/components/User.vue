@@ -1,6 +1,8 @@
 <template>
-    <div><app-user-display></app-user-display>
-    <app-user-input></app-user-input></div>
+    <div class="">
+        <app-user-display></app-user-display>
+        <app-user-input></app-user-input>
+    </div>
 </template>
 
 <script>

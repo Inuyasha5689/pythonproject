@@ -1,7 +1,7 @@
 <template>
-    <div class="row col-xs-12 col-md-6" style="padding-top: 5px; display: inline-block; position: relative;">
+    <div class="row col-xs-12 col-md-6" style="display: inline-block; position: relative;">
         <ul class="list-group">
-            <li class="list-group-item" style="padding-top: 5px">
+            <li class="list-group-item">
                 <h3>This is the user you pulled from the database</h3>
                 <hr>
                 <div class="">
@@ -35,7 +35,7 @@
                     <input class="form-control" type="number" v-model="id" min="1"/>
                 </div>
             </li>
-            <div class="btn btn-group">
+            <div class="btn btn-group" style="border-right: px">
                 <button @click="fetchData" class="btn btn-primary">Get Data</button>
                 <button @click="deleteUser" class="btn btn-danger">Delete Currently Displayed User</button>
             </div>

@@ -1,6 +1,6 @@
 <template>
-    <div class="container" style="">
-        <div class="col-xs-12 col-md-6 pull-left" style=" display: inline-block; position: relative;">
+    <div style="">
+        <div class="row col-xs-12 col-md-6" style=" display: inline-block; position: relative;">
             <div class="form-group has-icon has-icon-right">
                 <label>First Name</label>
                 <input class="form-control" v-validate:firstName="'required|alpha|min:3|max:20'" name="firstName" type="text"
@@ -43,10 +43,10 @@
                 <i v-show="errors.has('zipcode')" class="fa fa-warning"></i>
                 <span v-show="errors.has('zipcode')" class="help is-danger">{{ errors.first('zipcode') }}</span>
             </div>
-            <div class="btn btn-group">
+            <div class=""><div class="btn btn-group">
                 <button @click="submit" class="btn btn-primary">Submit User</button>
                 <button @click="updateUser" class="btn btn-warning">Update User</button>
-            </div>
+            </div></div>
         </div>
         <transition name="bounce" mode="out-in" @afterEnter="afterEnter">
             <app-panel :success="success" :successClass="successClass" :danger="danger" v-if="showSuccess" class=" col-xs-12 col-md-6" key="component" ></app-panel>
