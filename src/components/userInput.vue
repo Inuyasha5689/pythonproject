@@ -56,6 +56,7 @@
 
 <script>
     import Panel from './panel.vue';
+    import { ErrorBag } from 'vee-validate';
     import {eventBus} from  '../main';
     export default {
         data() {
@@ -110,12 +111,15 @@
                         this.inputUser = this.emptyUser;
                         this.success = "You have successfully added your user info to the database! If you would like to change or delete it later please use the id number: "+ response.data.data.id;
                         this.showSuccess = true;
-                        this.fields.reset();
                     }, error => {
                         this.success="Make sure all the fields are filled before you submit!";
                         this.showSuccess = true;
                         this.successClass = false;
+                    })
+                    .then(() => {
+                        this.errors.clear();
                     });
+                this.$emit('clear');
                 this.success = '';
                 this.user = this.emptyUser;
                 this.successClass = true;
@@ -179,7 +183,7 @@
 
                     };
                     this.usersLengthFunc();
-
+                    eventBus.$emit('emptyUser', this.emptyUser);
 
                 })
 
@@ -190,6 +194,9 @@
           eventBus.$on('danger', (danger) => {
               this.danger = danger;
           });
+            eventBus.$on('success', (success) => {
+                this.success = success;
+            });
           eventBus.$on('successClass', (successClass) => {
               this.successClass = successClass;
           });

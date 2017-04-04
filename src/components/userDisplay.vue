@@ -54,6 +54,7 @@
                 successClass: true,
                 showSuccess: false,
                 displayUser: {},
+                emptyUser:{},
                 id: 1
             }
         },
@@ -81,7 +82,11 @@
                 this.$http.delete('http://vuejs.magicalexwuff.com:5000/api/v1/users{/id}.json', {params: {id: this.id}})
                     .then(response => {
                         this.success = "You have successfully deleted the user from the database!";
+                        eventBus.$emit('success', this.success);
                         this.showSuccess = true;
+                        eventBus.$emit('showSuccess', this.showSuccess);
+                        this.successClass = true;
+                        eventBus.$emit('successClass', this.successClass);
                         this.displayUser = this.emptyUser;
                     }, error => {
                         this.danger = "unable to delete the user";
@@ -94,7 +99,10 @@
         created() {
             eventBus.$on('displayUser', (user) => {
                 this.displayUser = user;
-            })
+            });
+            eventBus.$on('emptyUser', (user) => {
+                this.emptyUser = user;
+            });
         }
     }
 
