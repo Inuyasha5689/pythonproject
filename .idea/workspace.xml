@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0f34c10-b04f-4a99-bad2-017acd164d61" name="Default" comment="added the build file">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/userDisplay.vue" afterPath="$PROJECT_DIR$/src/components/userDisplay.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/panel.vue" afterPath="$PROJECT_DIR$/src/components/panel.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/userInput.vue" afterPath="$PROJECT_DIR$/src/components/userInput.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -74,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="panel.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="panel.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/panel.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="51" column="23" lean-forward="false" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
+            <state relative-caret-position="16">
+              <caret line="1" column="54" lean-forward="false" selection-start-line="1" selection-start-column="54" selection-end-line="1" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -94,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userInput.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="userInput.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/userInput.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="110" column="56" lean-forward="false" selection-start-line="110" selection-start-column="56" selection-end-line="110" selection-end-column="56" />
+            <state relative-caret-position="1337">
+              <caret line="108" column="38" lean-forward="true" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="38" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="e#4063#4095#0" expanded="true" />
@@ -157,6 +158,7 @@
       <find>usersLengt</find>
       <find>delete</find>
       <find>reset</find>
+      <find>console</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -184,7 +186,6 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/components/list.vue" />
         <option value="$PROJECT_DIR$/src/routes.js" />
-        <option value="$PROJECT_DIR$/src/components/panel.vue" />
         <option value="$PROJECT_DIR$/src/components/content.vue" />
         <option value="$PROJECT_DIR$/src/components/home.vue" />
         <option value="$PROJECT_DIR$/src/App.vue" />
@@ -192,6 +193,7 @@
         <option value="$PROJECT_DIR$/src/components/header.vue" />
         <option value="$PROJECT_DIR$/src/components/userDisplay.vue" />
         <option value="$PROJECT_DIR$/src/components/userInput.vue" />
+        <option value="$PROJECT_DIR$/src/components/panel.vue" />
       </list>
     </option>
   </component>
@@ -430,7 +432,7 @@
       <workItem from="1490807683861" duration="4000" />
       <workItem from="1490807705884" duration="10522000" />
       <workItem from="1491158596633" duration="22386000" />
-      <workItem from="1491262909973" duration="3975000" />
+      <workItem from="1491262909973" duration="4157000" />
     </task>
     <task id="LOCAL-00001" summary="added gitignore file">
       <created>1490816520103</created>
@@ -471,10 +473,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82497000" />
+    <option name="totallyTimeSpent" value="82679000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1387" y="0" width="1180" height="1407" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2994746" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -483,7 +486,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33894232" sideWeight="0.4936306" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33894232" sideWeight="0.4936306" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39983973" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -808,14 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/panel.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="51" column="23" lean-forward="false" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/content.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
@@ -879,12 +874,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/userInput.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="110" column="56" lean-forward="false" selection-start-line="110" selection-start-column="56" selection-end-line="110" selection-end-column="56" />
+        <state relative-caret-position="1337">
+          <caret line="108" column="38" lean-forward="true" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="38" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#4063#4095#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/panel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="1" column="54" lean-forward="false" selection-start-line="1" selection-start-column="54" selection-end-line="1" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>

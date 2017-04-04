@@ -72,7 +72,6 @@
                         this.displayUser = response.body.data.attributes;
                         eventBus.$emit('displayUser', this.displayUser);
                     }, error => {
-                        console.log(error);
                         this.danger = "User id not found!";
                         this.emitData(this.danger, false, true);
                     });

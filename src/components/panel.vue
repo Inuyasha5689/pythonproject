@@ -1,5 +1,5 @@
 <template>
-    <div class="panel panel-default"  :class="panelClasses" key="panel" style="">
+    <div class="panel panel-default col-xs-12 col-md-6npm"  :class="panelClasses" key="panel" style="">
         <div class="panel-heading" :class="panelClasses">Status:
             <h3 class="panel-title" :class="panelClasses">{{ heading }}</h3>
         </div>

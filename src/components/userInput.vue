@@ -104,10 +104,8 @@
         },
         methods: {
             submit() {
-                console.log(this.inputUser);
                 this.$http.post('http://vuejs.magicalexwuff.com:5000/api/v1/users.json', this.inputUser)
                     .then(response => {
-                        console.log(response);
                         this.inputUser = this.emptyUser;
                         this.success = "You have successfully added your user info to the database! If you would like to change or delete it later please use the id number: "+ response.data.data.id;
                         this.showSuccess = true;
@@ -176,9 +174,7 @@
                     this.usersLengthFunc = function () {
                         this.users = resultArray;
                         this.$set(this.users, this.users);
-                        console.log(this.users);
                         this.usersLength = this.users.length;
-                        console.log(this.usersLength);
                         eventBus.$emit('usersArray', this.users);
 
                     };
@@ -190,7 +186,6 @@
 
         },
         created() {
-          console.log(this.User);
           eventBus.$on('danger', (danger) => {
               this.danger = danger;
           });
