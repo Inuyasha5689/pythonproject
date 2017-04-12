@@ -73,7 +73,7 @@
                         eventBus.$emit('displayUser', this.displayUser);
                     }, error => {
                         this.danger = "User id not found!";
-                        this.emitData(this.danger, false, true);
+                        eventBus.emitData(this.danger, false, true);
                     });
                 this.successClass = true;
             },
@@ -89,7 +89,7 @@
                         this.displayUser = this.emptyUser;
                     }, error => {
                         this.danger = "unable to delete the user";
-                        this.emitData(this.danger, false, true);
+                        eventBus.emitData(this.danger, false, true);
 
                     });
                 this.successClass = true;
