@@ -107,11 +107,11 @@
                     .then(response => {
                         this.inputUser = this.emptyUser;
                         this.status = ["Success","You have successfully added your user info to the database! If you would like to change or delete it later please use the id number: "+ response.data.data.id];
-                        eventBus.$emit("success", this.success);
+                        eventBus.$emit("status", this.status);
                         this.showSuccess = true;
                     }, error => {
                         this.status=["Error","Make sure all the fields are filled before you submit!"];
-                        eventBus.$emit("success", this.success);
+                        eventBus.$emit("status", this.status);
                         this.showSuccess = true;
                         this.successClass = false;
                     })
