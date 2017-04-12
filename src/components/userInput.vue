@@ -49,7 +49,7 @@
             </div>
         </div>
         <transition name="bounce" mode="out-in" @afterEnter="afterEnter">
-            <app-panel :success="success" :successClass="successClass" :danger="danger" v-if="showSuccess" class=" col-xs-12 col-md-6" key="component" ></app-panel>
+            <app-panel :successClass="successClass" :status="status" v-if="showSuccess" class=" col-xs-12 col-md-6" key="component" ></app-panel>
         </transition>
     </div>
 </template>
@@ -95,11 +95,10 @@
                 id: 0,
                 usersLength: 1,
                 showSuccess: false,
-                success: '',
                 dangerArray: [],
                 successClass: true,
                 nextPostId: [],
-                danger: ''
+                status: []
             }
         },
         methods: {
@@ -107,10 +106,12 @@
                 this.$http.post('http://vuejs.magicalexwuff.com:5000/api/v1/users.json', this.inputUser)
                     .then(response => {
                         this.inputUser = this.emptyUser;
-                        this.success = "You have successfully added your user info to the database! If you would like to change or delete it later please use the id number: "+ response.data.data.id;
+                        this.status = ["Success","You have successfully added your user info to the database! If you would like to change or delete it later please use the id number: "+ response.data.data.id];
+                        eventBus.$emit("success", this.success);
                         this.showSuccess = true;
                     }, error => {
-                        this.success="Make sure all the fields are filled before you submit!";
+                        this.status=["Error","Make sure all the fields are filled before you submit!"];
+                        eventBus.$emit("success", this.success);
                         this.showSuccess = true;
                         this.successClass = false;
                     })
@@ -118,7 +119,7 @@
                         this.errors.clear();
                     });
                 this.$emit('clear');
-                this.success = '';
+                this.status = [];
                 this.user = this.emptyUser;
                 this.successClass = true;
                 this.usersLengthFunc();
@@ -127,10 +128,10 @@
                 this.$http.patch('http://vuejs.magicalexwuff.com:5000/api/v1/users{/id}.json', this.inputUser, {params: {id: this.id}})
                     .then(response => {
                         this.inputUser = this.emptyUser;
-                        this.success = "You have successfully updated the selected user!";
+                        this.status = ["Success","You have successfully updated the selected user!"];
                         this.showSuccess = true;
                     }, error => {
-                        this.danger = "1 or more fields have not been entered. Please make sure all fields are filled.";
+                        this.status = ["Error","1 or more fields have not been entered. Please make sure all fields are filled."];
                         this.successClass = false;
                         this.showSuccess = true;
                     });
@@ -186,12 +187,9 @@
 
         },
         created() {
-          eventBus.$on('danger', (danger) => {
-              this.danger = danger;
+          eventBus.$on('status', (status) => {
+              this.status = status;
           });
-            eventBus.$on('success', (success) => {
-                this.success = success;
-            });
           eventBus.$on('successClass', (successClass) => {
               this.successClass = successClass;
           });

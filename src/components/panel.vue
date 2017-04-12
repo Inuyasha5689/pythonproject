@@ -12,8 +12,7 @@
 
     export default {
         props: [
-            'success',
-            'danger',
+            'status',
             'successClass'
         ],
         data() {
@@ -24,12 +23,12 @@
         },
         methods:{
             panelMessage: function () {
-                if (this.success !== '') {
-                    this.message = this.success;
-                    this.heading = 'Success!';
+                if (this.status !== '') {
+                    this.message = this.status[1];
+                    this.heading = this.status[0];
                 } else {
-                    this.message = this.danger;
-                    this.heading = 'Error!';
+                    this.message = this.status[1];
+                    this.heading = this.status[0];
                 }
             }
         },

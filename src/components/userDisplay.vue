@@ -50,7 +50,7 @@
     export default {
         data() {
             return {
-                danger: '',
+                status: [],
                 successClass: true,
                 showSuccess: false,
                 displayUser: {},
@@ -59,8 +59,8 @@
             }
         },
         methods: {
-            emitData(danger, successClass, showSuccess) {
-                eventBus.$emit('danger', this.danger);
+            emitData(status, successClass, showSuccess) {
+                eventBus.$emit('status', status);
                 this.successClass = successClass;
                 eventBus.$emit('successClass', this.successClass);
                 this.showSuccess = showSuccess;
@@ -72,24 +72,24 @@
                         this.displayUser = response.body.data.attributes;
                         eventBus.$emit('displayUser', this.displayUser);
                     }, error => {
-                        this.danger = "User id not found!";
-                        eventBus.emitData(this.danger, false, true);
+                        this.status = ["Error","User id not found!"];
+                        this.emitData(this.status, false, true);
                     });
                 this.successClass = true;
             },
             deleteUser() {
                 this.$http.delete('http://vuejs.magicalexwuff.com:5000/api/v1/users{/id}.json', {params: {id: this.id}})
                     .then(response => {
-                        this.success = "You have successfully deleted the user from the database!";
-                        eventBus.$emit('success', this.success);
+                        this.status = ["Success","You have successfully deleted the user from the database!"];
+                        eventBus.$emit('status', this.status);
                         this.showSuccess = true;
                         eventBus.$emit('showSuccess', this.showSuccess);
                         this.successClass = true;
                         eventBus.$emit('successClass', this.successClass);
                         this.displayUser = this.emptyUser;
                     }, error => {
-                        this.danger = "unable to delete the user";
-                        eventBus.emitData(this.danger, false, true);
+                        this.status = ["Error","Unable to delete the user"];
+                        eventBus.emitData(this.status, false, true);
 
                     });
                 this.successClass = true;
