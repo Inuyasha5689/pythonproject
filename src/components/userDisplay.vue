@@ -75,20 +75,18 @@
                         this.status = ["Error","User id not found!"];
                         this.emitData(this.status, false, true);
                     });
-                this.successClass = true;
             },
             deleteUser() {
                 this.$http.delete('http://vuejs.magicalexwuff.com:5000/api/v1/users{/id}.json', {params: {id: this.id}})
                     .then(response => {
                         this.status = ["Success","You have successfully deleted the user from the database!"];
-                        this.emitData(this.status, true, false);
+                        this.emitData(this.status, true, true);
                         this.displayUser = this.emptyUser;
                     }, error => {
                         this.status = ["Error","Unable to delete the user"];
                         this.emitData(this.status, false, true);
 
                     });
-                this.successClass = true;
             }
         },
         created() {

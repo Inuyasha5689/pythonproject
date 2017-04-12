@@ -102,25 +102,28 @@
             }
         },
         methods: {
+            emitData(status, successClass, showSuccess) {
+                eventBus.$emit('status', status);
+                this.successClass = successClass;
+                eventBus.$emit('successClass', this.successClass);
+                this.showSuccess = showSuccess;
+                eventBus.$emit('showSuccess', this.showSuccess);
+            },
             submit() {
                 this.$http.post('http://vuejs.magicalexwuff.com:5000/api/v1/users.json', this.inputUser)
                     .then(response => {
                         this.inputUser = this.emptyUser;
                         this.status = ["Success","You have successfully added your user info to the database! If you would like to change or delete it later please use the id number: "+ response.data.data.id];
-                        eventBus.$emit("status", this.status);
-                        this.showSuccess = true;
+                        this.emitData(this.status, true, true);
                     }, error => {
                         this.status=["Error","Make sure all the fields are filled before you submit!"];
-                        eventBus.$emit("status", this.status);
-                        this.showSuccess = true;
-                        this.successClass = false;
+                        this.emitData(this.status, false, true);
                     })
                     .then(() => {
                         this.errors.clear();
                     });
                 this.$emit('clear');
                 this.user = this.emptyUser;
-                this.successClass = true;
                 this.usersLengthFunc();
             },
             updateUser() {
@@ -128,13 +131,11 @@
                     .then(response => {
                         this.inputUser = this.emptyUser;
                         this.status = ["Success","You have successfully updated the selected user!"];
-                        eventBus.$emit("status", this.status);
-                        this.showSuccess = true;
+                        this.emitData(this.status, true, true);
+
                     }, error => {
                         this.status = ["Error","1 or more fields have not been entered. Please make sure all fields are filled."];
-                        eventBus.$emit("status", this.status);
-                        this.successClass = false;
-                        this.showSuccess = true;
+                        this.emitData(this.status, false, true);
                     });
                 this.successClass = true;
             },
