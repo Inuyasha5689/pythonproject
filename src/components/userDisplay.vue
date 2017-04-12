@@ -81,11 +81,7 @@
                 this.$http.delete('http://vuejs.magicalexwuff.com:5000/api/v1/users{/id}.json', {params: {id: this.id}})
                     .then(response => {
                         this.status = ["Success","You have successfully deleted the user from the database!"];
-                        eventBus.$emit('status', this.status);
-                        this.showSuccess = true;
-                        eventBus.$emit('showSuccess', this.showSuccess);
-                        this.successClass = true;
-                        eventBus.$emit('successClass', this.successClass);
+                        this.emitData(this.status, true, false);
                         this.displayUser = this.emptyUser;
                     }, error => {
                         this.status = ["Error","Unable to delete the user"];
