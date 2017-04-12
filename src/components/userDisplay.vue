@@ -89,7 +89,7 @@
                         this.displayUser = this.emptyUser;
                     }, error => {
                         this.status = ["Error","Unable to delete the user"];
-                        eventBus.emitData(this.status, false, true);
+                        this.emitData(this.status, false, true);
 
                     });
                 this.successClass = true;
