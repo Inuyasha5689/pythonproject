@@ -119,7 +119,6 @@
                         this.errors.clear();
                     });
                 this.$emit('clear');
-                this.status = [];
                 this.user = this.emptyUser;
                 this.successClass = true;
                 this.usersLengthFunc();
@@ -129,9 +128,11 @@
                     .then(response => {
                         this.inputUser = this.emptyUser;
                         this.status = ["Success","You have successfully updated the selected user!"];
+                        eventBus.$emit("status", this.status);
                         this.showSuccess = true;
                     }, error => {
                         this.status = ["Error","1 or more fields have not been entered. Please make sure all fields are filled."];
+                        eventBus.$emit("status", this.status);
                         this.successClass = false;
                         this.showSuccess = true;
                     });
